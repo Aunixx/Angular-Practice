@@ -9,13 +9,29 @@ import { Component, WritableSignal, signal } from '@angular/core';
 })
 export class SecondComponentComponent {
   second = 'Second Component';
+  inputValue: string = '';
   count: WritableSignal<number> = signal(0);
   incrementCount() {
-    this.count.update((value) => value + 1);
+    this.count.update((value) =>
+      parseInt(this.inputValue) ? value + parseInt(this.inputValue) : value + 1
+    );
   }
   decrementCount() {
     if (this.count() > 0) {
-      this.count.update((value) => value - 1);
+      this.count.update((value) =>
+        parseInt(this.inputValue)
+          ? value - parseInt(this.inputValue)
+          : value - 1
+      );
+    }
+  }
+  resetCount() {
+    this.count.update((value) => 0);
+  }
+  handleInputChange(e: EventTarget | null) {
+    if (e instanceof HTMLInputElement) {
+      this.inputValue = e.value;
+      console.log(this.inputValue);
     }
   }
 }

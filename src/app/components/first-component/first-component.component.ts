@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class FirstComponentComponent {
   constructor(private router: Router) {}
-  @Input() first = 'first';
+  @Input() test = '';
   hero = 'Windstorm';
   something = 'Something';
   onClick = () => {

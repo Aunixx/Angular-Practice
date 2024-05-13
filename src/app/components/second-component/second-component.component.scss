@@ -15,4 +15,10 @@
     border-radius: 0.5rem;
     height: min-content;
   }
+  input {
+    border: 1px solid var(--bright-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: 2rem;
+  }
 }

@@ -2,4 +2,6 @@
   <button (click)="decrementCount()">-</button>
   <p>{{ count() }}</p>
   <button (click)="incrementCount()">+</button>
+  <button (click)="resetCount()">Reset</button>
+  <input type="number" (input)="handleInputChange($event.target)" />
 </div>
