@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+  p {
+    margin: 0;
+  }
+  button {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--bright-blue);
+    background-color: transparent;
+    color: var(--bright-blue);
+    border-radius: 0.5rem;
+    height: min-content;
+  }
+}
