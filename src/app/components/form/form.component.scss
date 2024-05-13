@@ -1,0 +1,29 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid var(--bright-blue);
+  border-radius: 0.5rem;
+  gap: 1rem;
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    input,
+    textarea {
+      border: 1px solid var(--bright-blue);
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+    label {
+      margin-bottom: 0.35rem;
+      color: var(--bright-blue);
+    }
+  }
+  button {
+    border: 1px solid var(--bright-blue);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: var(--bright-blue);
+  }
+}

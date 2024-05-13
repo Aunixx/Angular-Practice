@@ -1,0 +1,19 @@
+<form class="form-wrapper" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="input-wrapper">
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="name" />
+  </div>
+  <div class="input-wrapper">
+    <label for="email">Email: </label>
+    <input id="email" type="email" formControlName="email" />
+  </div>
+  <div class="input-wrapper">
+    <label for="phone">Phone: </label>
+    <input id="phone" type="phone" formControlName="phone" />
+  </div>
+  <div class="input-wrapper">
+    <label for="message">message: </label>
+    <textarea id="message" type="message" formControlName="message"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
