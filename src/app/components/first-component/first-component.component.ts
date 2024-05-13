@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-component',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './first-component.component.scss',
 })
 export class FirstComponentComponent {
+  constructor(private router: Router) {}
+  @Input() first = 'first';
   hero = 'Windstorm';
   something = 'Something';
   onClick = () => {
@@ -19,4 +22,7 @@ export class FirstComponentComponent {
     console.log(this.hero);
     console.log(this.something);
   };
+  goToHomePage() {
+    this.router.navigate(['/']);
+  }
 }

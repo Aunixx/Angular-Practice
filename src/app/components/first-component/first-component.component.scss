@@ -1,3 +1,8 @@
-p {
+button {
   cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--bright-blue);
+  background-color: transparent;
+  color: var(--bright-blue);
+  border-radius: 0.5rem;
 }
