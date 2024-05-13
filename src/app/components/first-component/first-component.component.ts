@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, WritableSignal, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,5 +24,14 @@ export class FirstComponentComponent {
   };
   goToHomePage() {
     this.router.navigate(['/']);
+  }
+  count: WritableSignal<number> = signal(0);
+  incrementCount() {
+    this.count.update((value) => value + 1);
+  }
+  decrementCount() {
+    if (this.count() > 0) {
+      this.count.update((value) => value - 1);
+    }
   }
 }
