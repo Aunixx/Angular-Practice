@@ -5,23 +5,7 @@
   border: 1px solid var(--bright-blue);
   border-radius: 0.5rem;
   gap: 1rem;
-  .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    input,
-    textarea {
-      border: 1px solid var(--bright-blue);
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
-      &.error-border {
-        border-color: red; /* Change the border color to red */
-      }
-    }
-    label {
-      margin-bottom: 0.35rem;
-      color: var(--bright-blue);
-    }
-  }
+
   button {
     border: 1px solid var(--bright-blue);
     border-radius: 0.5rem;
@@ -29,11 +13,5 @@
     background-color: transparent;
     color: var(--bright-blue);
     cursor: pointer;
-  }
-  .error-message {
-    color: red;
-    margin: 0;
-    margin-top: 0.25rem;
-    font-size: 0.75rem;
   }
 }

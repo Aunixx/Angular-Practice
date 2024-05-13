@@ -1,36 +1,11 @@
-<!-- form.component.html -->
-
 <form class="form-wrapper" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  @for ( input of allInputs; track input ){
   <app-input
-    name="name"
-    label="Name"
-    error="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
-    errorMessage="Name is required."
-    type="text"
-  ></app-input>
-  <app-input
-    name="email"
-    label="Email"
-    error="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
-    errorMessage="Please enter a valid email address."
-    type="email"
-  ></app-input>
-  <app-input
-    name="phone"
-    label="Phone Number"
-    error="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
-    errorMessage="Please enter a valid phone number."
-    type="phone"
-  ></app-input>
-  <app-input
-    name="message"
-    label="Message"
-    error="
-    contactForm.get('message')?.invalid &&
-    contactForm.get('message')?.touched
-  "
-    errorMessage="Message is required."
-    type="textArea"
-  ></app-input>
+    [formInput]="input"
+    (valueChange)="handleInputChange($event, input?.name)"
+    [form]="contactForm"
+  />
+  }
+
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

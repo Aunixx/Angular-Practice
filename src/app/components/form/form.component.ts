@@ -5,40 +5,56 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, InputComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
 })
 export class FormComponent {
-  contactForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(/^\d+$/),
-    ]),
-    message: new FormControl('', Validators.required),
-  });
-
-  constructor() {
-    this.logFormControlErrors();
-  }
-
-  logFormControlErrors() {
-    Object.keys(this.contactForm.controls).forEach((key) => {
-      const control = this.contactForm.get(key);
-      if (control) {
-        control.statusChanges.subscribe((status) => {
-          if (status === 'INVALID') {
-            const errors = control.errors;
-            console.error(`Validation errors for ${key}:`, errors);
-          }
-        });
-      }
+  contactForm: FormGroup = new FormGroup({});
+  allInputs: any = [
+    {
+      name: 'name',
+      label: 'Name',
+      error: false,
+      errorMessage: 'Name is required.',
+      type: 'text',
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      error: false,
+      errorMessage: 'Please enter a valid email address.',
+      type: 'email',
+    },
+    {
+      name: 'phone',
+      label: 'phone',
+      error: false,
+      errorMessage: 'Please enter a valid phone number.',
+      type: 'phone',
+    },
+    {
+      name: 'message',
+      label: 'Message',
+      error: false,
+      errorMessage: 'Message is required.',
+      type: 'message',
+    },
+  ];
+  ngOnInit(): void {
+    this.contactForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^\d+$/),
+      ]),
+      message: new FormControl('', Validators.required),
     });
   }
 
@@ -53,10 +69,32 @@ export class FormComponent {
   }
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value);
+      this.allInputs.map((input: any) => console.log(input));
+      console.log(this.contactForm.value, 'success');
       this.contactForm.reset();
     } else {
-      this.markFormGroupTouched(this.contactForm);
+      const newInputs = [...this.allInputs];
+      Object.keys(this.contactForm.controls).forEach((key) => {
+        const control = this.contactForm.get(key);
+        if (control) {
+          const input = newInputs.find((input) => input.name === key);
+          if (input) {
+            input.error = control.invalid;
+          }
+        }
+      });
+      this.allInputs = newInputs;
+    }
+  }
+
+  handleInputChange(value: string, controlName: string) {
+    this.contactForm.get(controlName)?.setValue(value);
+    if (this.contactForm.get(controlName)?.invalid) {
+      this.allInputs.find((input: any) => input.name === controlName).error =
+        true;
+    } else {
+      this.allInputs.find((input: any) => input.name === controlName).error =
+        false;
     }
   }
 }
