@@ -1,0 +1,19 @@
+<div class="input-wrapper">
+  <label for="{{ name }}">{{ label }}: </label>
+  @if(type === 'textArea'){
+  <textarea
+    id="{{ name }}"
+    formControlName="{{ name }}"
+    [class.error-border]="error"
+  ></textarea>
+  }@else {
+  <input
+    id="{{ name }}"
+    type="{{ type }}"
+    formControlName="{{ name }}"
+    [class.error-border]="error"
+  />
+  } @if(error) {
+  <p class="error-message">{{ errorMessage }}</p>
+  }
+</div>

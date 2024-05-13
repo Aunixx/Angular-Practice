@@ -1,64 +1,36 @@
 <!-- form.component.html -->
 
 <form class="form-wrapper" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-  <div class="input-wrapper">
-    <label for="name">Name: </label>
-    <input
-      id="name"
-      type="text"
-      formControlName="name"
-      [class.error-border]="
-        contactForm.get('name')?.invalid && contactForm.get('name')?.touched
-      "
-    />
-    @if(contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-    <p class="error-message">Name is required.</p>
-    }
-  </div>
-  <div class="input-wrapper">
-    <label for="email">Email: </label>
-    <input
-      id="email"
-      type="email"
-      formControlName="email"
-      [class.error-border]="
-        contactForm.get('email')?.invalid && contactForm.get('email')?.touched
-      "
-    />
-    @if(contactForm.get('email')?.invalid && contactForm.get('email')?.touched)
-    {
-    <p class="error-message">Please enter a valid email address.</p>
-    }
-  </div>
-  <div class="input-wrapper">
-    <label for="phone">Phone: </label>
-    <input
-      id="phone"
-      type="phone"
-      formControlName="phone"
-      [class.error-border]="
-        contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched
-      "
-    />
-    @if(contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched)
-    {
-    <p class="error-message">Please enter a valid phone number.</p>
-    }
-  </div>
-  <div class="input-wrapper">
-    <label for="message">Message: </label>
-    <textarea
-      id="message"
-      formControlName="message"
-      [class.error-border]="
-        contactForm.get('message')?.invalid &&
-        contactForm.get('message')?.touched
-      "
-    ></textarea>
-    @if(contactForm.get('message')?.invalid &&
-    contactForm.get('message')?.touched) {
-    <p class="error-message">Message is required.</p>
-    }
-  </div>
+  <app-input
+    name="name"
+    label="Name"
+    error="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+    errorMessage="Name is required."
+    type="text"
+  ></app-input>
+  <app-input
+    name="email"
+    label="Email"
+    error="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+    errorMessage="Please enter a valid email address."
+    type="email"
+  ></app-input>
+  <app-input
+    name="phone"
+    label="Phone Number"
+    error="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+    errorMessage="Please enter a valid phone number."
+    type="phone"
+  ></app-input>
+  <app-input
+    name="message"
+    label="Message"
+    error="
+    contactForm.get('message')?.invalid &&
+    contactForm.get('message')?.touched
+  "
+    errorMessage="Message is required."
+    type="textArea"
+  ></app-input>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
