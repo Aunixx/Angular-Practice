@@ -6,7 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { InputComponent } from '../input/input.component';
-
+interface Input {
+  name: string;
+  label: string;
+  error: boolean;
+  errorMessage: string;
+  type: string;
+}
 @Component({
   selector: 'app-form',
   standalone: true,
@@ -16,7 +22,7 @@ import { InputComponent } from '../input/input.component';
 })
 export class FormComponent {
   contactForm: FormGroup = new FormGroup({});
-  allInputs: any = [
+  allInputs: Input[] = [
     {
       name: 'name',
       label: 'Name',
@@ -69,7 +75,6 @@ export class FormComponent {
   }
   onSubmit() {
     if (this.contactForm.valid) {
-      this.allInputs.map((input: any) => console.log(input));
       console.log(this.contactForm.value, 'success');
       this.contactForm.reset();
     } else {
@@ -89,12 +94,13 @@ export class FormComponent {
 
   handleInputChange(value: string, controlName: string) {
     this.contactForm.get(controlName)?.setValue(value);
+    const item = this.allInputs.find(
+      (input: Input) => input.name === controlName
+    );
     if (this.contactForm.get(controlName)?.invalid) {
-      this.allInputs.find((input: any) => input.name === controlName).error =
-        true;
+      if (item) item.error = true;
     } else {
-      this.allInputs.find((input: any) => input.name === controlName).error =
-        false;
+      if (item) item.error = false;
     }
   }
 }
